@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -208,7 +208,7 @@ td.bx:hover{background:var(--accent-bg)}
 </style>
 <style id="v2">
 :root{
-  --bg:#E9E6E0; --surface:#F6F4EF; --surface2:#DDD8CF; --text:#2D2926; --muted:#6B645B; --border:#CDC7BB;
+  --bg:#FFFFFF; --surface:#FFFFFF; --surface2:#F1EEE9; --text:#2D2926; --muted:#6B645B; --border:#CDC7BB;
   --accent:#866D4B; --accent-bg:#E8DFD0; --pos:#2F8F63; --amb:#CF9B1D; --det:#BC473C; --zero:#8A8178;
   --pos-t:#1E6B47; --amb-t:#80590A; --det-t:#9A3329;
   --panel:#2D2926; --panel-text:#F4F0E8; --panel-muted:#B9B0A3; --zr:#D9614F; --za:#E2B33F; --zg:#4FB383;
@@ -337,9 +337,10 @@ td.mc[data-act]:hover{filter:brightness(.96)}
 .gk.tot .gk-ic{background:#866D4B;color:#fff}
 </style>
 <style id="login-css">
-.login{min-height:100vh;display:grid;place-items:center;padding:16px;background:var(--panel)}
+:root{color-scheme:light}
+.login{min-height:100vh;display:grid;place-items:center;padding:16px;background:#FFFFFF}
 .login[hidden]{display:none}
-.lbox{width:100%;max-width:400px;background:var(--surface);border-radius:20px;border-top:4px solid #866D4B;padding:30px 26px;text-align:center}
+.lbox{width:100%;max-width:400px;background:#FFFFFF;border:1px solid var(--border);box-shadow:0 8px 30px rgba(45,41,38,.10);border-radius:20px;border-top:4px solid #866D4B;padding:30px 26px;text-align:center}
 .lbox .mk{color:var(--text);font-size:22px;display:block}
 .lbox .tb-title{display:block;margin:4px 0 22px;color:var(--accent)}
 .lbox input{display:block;width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:var(--bg);color:var(--text);margin-bottom:12px}
@@ -347,6 +348,22 @@ td.mc[data-act]:hover{filter:brightness(.96)}
 .lmsg{min-height:22px;margin-top:10px;color:var(--det-t);font-size:14px}
 .lnote{font-size:12.5px;color:var(--muted);margin-top:8px}
 .btn.out{background:transparent;border-color:rgba(255,255,255,.25);color:#E9E3D8;padding:6px 12px;font-size:13px}
+</style>
+<style id="blanco">
+/* Versión fondo blanco: portada, barra superior y totales en claro */
+.topbar{background:#FFFFFF;color:#2D2926;border-bottom:3px solid #866D4B;box-shadow:0 1px 0 #ECE7DF}
+.topbar .mk{color:#2D2926}
+.topbar .tb-title{color:#866D4B}
+.topbar .badge.ok{background:#E3F1E9;color:#1E6B47}
+.btn.out{border-color:#CDC7BB;color:#2D2926}
+.hero{background:#FAF8F4;color:#2D2926;border:1px solid #E6E0D6;--panel:#FAF8F4;--panel-text:#2D2926;--panel-muted:#6B645B}
+.read h2{color:#866D4B}
+.read p{color:#3A3531}
+.read b{color:#2D2926}
+.gk.tot{background:#FAF8F4;color:#2D2926;border:2px solid #866D4B;--gk-track:#DDD8CF;--gk-goal:#2D2926;--gk-sub:#6B645B}
+.gk.tot .gk-s,.gk.tot .gk-prev,.gk.tot .gk-n small,.gk.tot .gk-c span{color:#6B645B}
+.gk.tot .gk-prev b{color:#2D2926}
+.gk.tot.zg{--t:var(--pos-t)}.gk.tot.za{--t:var(--amb-t)}.gk.tot.zr{--t:var(--det-t)}
 </style>
 </head>
 <body>
@@ -435,8 +452,8 @@ function gaugeSvg(v,sMin,startDeg){
      +'<text x="'+l[0].toFixed(1)+'" y="'+(l[1]+4).toFixed(1)+'" text-anchor="middle" font-size="11" style="fill:var(--panel-muted)">'+tv+'</text>';
   }
   const g1=P(f(t.green),r-sw/2-7),g2=P(f(t.green),r+sw/2+7),gl=P(f(t.green),r+sw/2+38);
-  s+='<line x1="'+g1[0].toFixed(1)+'" y1="'+g1[1].toFixed(1)+'" x2="'+g2[0].toFixed(1)+'" y2="'+g2[1].toFixed(1)+'" stroke="#C9B087" stroke-width="3.5"/>'
-   +'<text x="'+gl[0].toFixed(1)+'" y="'+(gl[1]+4).toFixed(1)+'" text-anchor="middle" font-size="12" font-weight="700" fill="#C9B087">meta '+t.green+'</text>';
+  s+='<line x1="'+g1[0].toFixed(1)+'" y1="'+g1[1].toFixed(1)+'" x2="'+g2[0].toFixed(1)+'" y2="'+g2[1].toFixed(1)+'" stroke="#866D4B" stroke-width="3.5"/>'
+   +'<text x="'+gl[0].toFixed(1)+'" y="'+(gl[1]+4).toFixed(1)+'" text-anchor="middle" font-size="12" font-weight="700" fill="#866D4B">meta '+t.green+'</text>';
   const deg=f(v)*180;
   s+='<g class="needle" data-deg="'+deg.toFixed(1)+'" style="transform:rotate('+(startDeg==null?deg:startDeg).toFixed(1)+'deg)"><line x1="'+cx+'" y1="'+cy+'" x2="'+(cx-(r-sw/2-10))+'" y2="'+cy+'" style="stroke:var(--panel-text)" stroke-width="4" stroke-linecap="round"/></g>'
    +'<circle cx="'+cx+'" cy="'+cy+'" r="10" style="fill:var(--panel-text)"/><circle cx="'+cx+'" cy="'+cy+'" r="4" style="fill:var(--panel)"/></svg>';
