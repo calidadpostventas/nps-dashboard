@@ -642,6 +642,8 @@ function render(){
     foot+='Período '+esc(p.periodo)+': encuestas del '+esc(p.desde)+' al '+esc(p.hasta)+'.'+(desc?' Quedaron fuera del cálculo: '+esc(desc)+'.':'')+' ';
   });
   foot+='Datos actualizados el '+esc(meta.generadoTexto||'—')+'</p>';
+  const omit=(meta.avisos||[]).filter(a=>a.indexOf('ARCHIVO OMITIDO')===0);
+  if(omit.length) view.insertAdjacentHTML('afterbegin','<div class="banner">Atención: '+omit.length+' archivo(s) no se pudieron leer y no están incluidos. '+omit.map(a=>esc(a.replace('ARCHIVO OMITIDO ',''))).join(' · ')+'</div>');
   view.insertAdjacentHTML('beforeend',foot);
   $('#modeBadge').innerHTML=per.length?'<span class="badge ok">Período '+esc(ui.filters.period.size?Array.from(ui.filters.period).join(', '):per[0])+'</span>':'';
 }
